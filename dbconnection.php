@@ -2,41 +2,30 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    
-    header("Location: register.php");
-    exit(); // Prevent further execution
-}
 
-
-
-
-// Database configuration
-$host = 'localhost'; // Database host
-$username = 'root'; // Database username
-$password = ''; // Database password
-$database = 'testdb'; // Database name
+$host = 'localhost'; 
+$username = 'root'; 
+$password = ''; 
+$database = 'testdb'; 
 
 // Create connection
 $conn = new mysqli($host, $username, $password);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create database if it doesn't exist
 $sql = "CREATE DATABASE IF NOT EXISTS $database";
 if ($conn->query($sql) !== TRUE) {
     die("Error creating database: " . $conn->error);
 }
 
-// Select the database
+
 $conn->select_db($database);
 
 
-// Create table if it doesn't exist
+
 $table = "users";
 $sql = "CREATE TABLE IF NOT EXISTS $table (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -48,7 +37,7 @@ if ($conn->query($sql) !== TRUE) {
     die("Error creating table: " . $conn->error);
 }
 
-// Check if form was submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
     $name = $conn->real_escape_string($_POST['name']);
@@ -56,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 
-    // Insert data into the database
+    
     $sql = "INSERT INTO $table (name, email, password) VALUES ('$name', '$email', '$password')";
     if ($conn->query($sql) === TRUE) {
         header("Location: /CollegeProject/NewsApp/index.html");
@@ -77,6 +66,5 @@ if ($result->num_rows === 0) {
     exit();
 }
 
-// Close connection
 $conn->close();
 ?>
