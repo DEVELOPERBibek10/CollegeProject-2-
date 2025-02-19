@@ -10,7 +10,7 @@
     <h1>Registration Successful!</h1>
     <p>Thank you for registering.</p>
 
-    <a href="./NewsApp/index.html">            Go to news site
+    <a href="./index.html">Go to news site
         
     </a> <!-- Adjust the path accordingly -->
 </body>
