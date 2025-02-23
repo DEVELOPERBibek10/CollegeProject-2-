@@ -5,7 +5,7 @@
     <title>Sign Up / Registration Form </title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="Signup.css" />
+    <link rel="stylesheet" href="Register.css" />
 </head>
 
 <body>
